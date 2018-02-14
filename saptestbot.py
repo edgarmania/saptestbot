@@ -4,13 +4,13 @@ import time
 from starterbot import parse_slack_output, slack_client, BOT_ID
 
 # COMMANDS
-from commands.osinfo import get_platform, get_release
+from commands.osinfo import get_os_platform, get_os_release
 
-cmd_names = ('platform', 'release')
-cmd_functions = (get_platform, get_release)
+cmd_names = ('os_platform', 'os_release')
+cmd_functions = (get_os_platform, get_os_release)
 COMMANDS = {
-     "platform" : get_platform,
-     "release"  : get_release
+     "os_platform" : get_os_platform,
+     "os_release"  : get_os_release
 }
 
 def handle_command(cmd, channel):
@@ -20,10 +20,12 @@ def handle_command(cmd, channel):
     if cmd in COMMANDS:
         if args:
             response = COMMANDS[cmd](*args)
+            #print ("Response: {}".format(response))
         else:
             response = COMMANDS[cmd]()
+            #print ("Response: {}".format(response))
     else:
-        response = ('Not sure what you mean'
+        response = ('Not sure what you mean\n'
                     'I can help you with these commands:\n'
                     '{}'.format('\n'.join(cmd_names)))
 

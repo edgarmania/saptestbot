@@ -2,9 +2,9 @@ import os
 import platform
 
 
-def get_platform():
-    return platform.system
+def get_os_platform():
+    return platform.system()
 
 
-def get_release():
-    return platform.release
+def get_os_release():
+    return platform.release()
